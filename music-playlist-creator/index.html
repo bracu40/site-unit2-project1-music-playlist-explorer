@@ -10,18 +10,152 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <!-- Your header content here -->
+    <header class="header">
+        <nav class="nav-bar">
+            <h1>Music Playlist Explorer</h1>
+            <div class="songs-right">
+                <a class="nav-link" href="featured.html">Featured</a>
+                <a class="nav-link active" href="index.html">All</a>
+            </div>
+        </nav>
     </header>
 
-    <main> 
-        <!-- Your main content here -->
+    <main>
+       <section id="create-playlist-launcher">
+        <div id="playlist-search-wrap">
+            <input id="playlist-search-input" type="search" placeholder="Search by playlist name or author..." aria-label="Search playlists">
+        </div>
+        <div id="playlist-sort-wrap">
+            <label for="playlist-sort-select">Sort by</label>
+            <select id="playlist-sort-select" aria-label="Sort playlists">
+                <option value="date_desc">Date Added (Newest)</option>
+                <option value="date_asc">Date Added (Oldest)</option>
+                <option value="name_asc">Name (A-Z)</option>
+                <option value="name_desc">Name (Z-A)</option>
+                <option value="likes_desc">Likes (High-Low)</option>
+                <option value="likes_asc">Likes (Low-High)</option>
+            </select>
+        </div>
+        <button id="open-create-playlist-modal-button" type="button">Create New Playlist</button>
+       </section>
+
+       <section id="playlist-gallery">
+        <ul id="playlist-grid"></ul>
+       </section>
     </main>
 
+    <dialog id="modal-overlay">
+        <section class="modal-content">
+            <button class="close playlist-modal-close" type="button" aria-label="Close modal">&times;</button>
+            <div class="modal-top">
+                <div class="modal-top-left">
+                    <img src="assets/img/playlist.png"/>
+                    <button id="shuffle-button">Shuffle</button>
+                    <div id="playlist-player-controls">
+                        <button id="playlist-prev-button" type="button" aria-label="Previous song">◀◀</button>
+                        <button id="playlist-play-button" type="button" aria-label="Play playlist">▶</button>
+                        <button id="playlist-next-button" type="button" aria-label="Next song">▶▶</button>
+                    </div>
+                    <p id="now-playing-label" aria-live="polite"></p>
+                </div>
+                <div class="modal-top-right">
+                    <h3>Playlist Title</h3>
+                    <p class="creator-name">Creator Name</p>
+                    <button id="get-description-button" type="button">Get Description</button>
+                    <p id="playlist-description" aria-live="polite"></p>
+                </div>
+            </div>
+            <ul class="modal-grid">
+                <li>
+                    <article class="song-card">
+                        <div class="song-left">
+                            <div>
+                                <img src="assets/img/song.png"/>
+                            </div>
+                            <div>
+                                <h4>Song Title</h4>
+                                <p>Artist name</p>
+                                <p>Album Name</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>0:00</p>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="song-card">
+                        <div class="song-left">
+                            <div>
+                                <img src="assets/img/song.png"/>
+                            </div>
+                            <div>
+                                <h4>Song Title</h4>
+                                <p>Artist name</p>
+                                <p>Album Name</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>0:00</p>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="song-card">
+                        <div class="song-left">
+                            <div>
+                                <img src="assets/img/song.png"/>
+                            </div>
+                            <div>
+                                <h4>Song Title</h4>
+                                <p>Artist name</p>
+                                <p>Album Name</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>0:00</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+    </dialog>
+
+    <dialog id="create-playlist-modal">
+        <section class="modal-content create-playlist-modal-content">
+            <button class="close create-playlist-close" type="button" aria-label="Close create playlist modal">&times;</button>
+            <h2 id="create-playlist-modal-title">Create a New Playlist</h2>
+            <form id="create-playlist-form">
+                <div class="form-top-row">
+                    <label>
+                        Playlist Name
+                        <input id="playlist-name-input" name="playlistName" type="text" required maxlength="80" placeholder="e.g., Sunset on Skyline Blvd">
+                    </label>
+                    <label>
+                        Playlist Author
+                        <input id="playlist-author-input" name="playlistAuthor" type="text" required maxlength="60" placeholder="e.g., Alex Rivera">
+                    </label>
+                </div>
+
+                <div class="form-actions-row">
+                    <h3>Songs</h3>
+                    <button type="button" id="add-song-row-button">+ Add Song</button>
+                </div>
+
+                <div id="songs-input-list"></div>
+
+                <div class="form-submit-row">
+                    <button type="submit" id="create-playlist-button">Create Playlist</button>
+                    <p id="create-playlist-message" aria-live="polite"></p>
+                </div>
+            </form>
+        </section>
+    </dialog>
+
     <footer>
-        <!-- Your footer content here -->
+        <p>&copy; 2026 Music Playlist Explorer</p>
     </footer>
-    <script src="data/data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
